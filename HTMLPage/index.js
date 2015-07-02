@@ -1,17 +1,16 @@
 'use strict';
 var util = require('util');
-var yeoman = require('yeoman-generator');
 var ScriptBase = require('../script-base.js');
 
 var NamedGenerator = module.exports = function NamedGenerator() {
-	ScriptBase.apply(this, arguments);
-}
+  ScriptBase.apply(this, arguments);
+};
 
 util.inherits(NamedGenerator, ScriptBase);
 
-NamedGenerator.prototype.createNamedItem = function(){
-	this.generateTemplateFile(
-		'htmlpage.html',
-		this.name + '.html'	
-	);
+NamedGenerator.prototype.createNamedItem = function() {
+  this.generateTemplateFile(
+    'HTMLPage.html',
+    this.name + '.html'
+  );
 };

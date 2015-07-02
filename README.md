@@ -6,10 +6,13 @@
 
 Yeoman generator for ASP.NET vNext projects
 
-[![](https://cloud.githubusercontent.com/assets/14539/6697962/a57211ac-ccf4-11e4-97d9-7ed16bb16d37.gif)](https://github.com/OmniSharp/generator-aspnet 'ASP.NET 5 Generator')
+[![](https://cloud.githubusercontent.com/assets/14539/7401059/68a5007e-eec1-11e4-8b47-f0de0e4d3746.gif)](https://github.com/OmniSharp/generator-aspnet 'ASP.NET 5 Generator')
 
 ## Getting Started
 
+- Dependencies:
+    - node.js: `brew install node` for OSX, `choco install node` for Windows
+    - Yeoman: `npm install -g yo`
 - Install: `npm install -g generator-aspnet`
 - Run: `yo aspnet`
 
@@ -17,7 +20,7 @@ Yeoman generator for ASP.NET vNext projects
 
 * `yo aspnet` shows a wizard for generating a new ASP.NET app
 
-* `yo aspnet --gulp` generates gulp.js files for **web** template instead of grunt.js
+* `yo aspnet --grunt` generates Gruntfile.js files for **web** template instead of gulp.js
 
 * `yo aspnet --help` shows flags and other configurable options
 
@@ -28,43 +31,74 @@ Full, template based projects available in generator:
 - Empty Application
 - Console Application
 - Web Application
+- Web Application Simple [without Membership and Authorization]
 - Web API Application
 - Nancy ASP.NET Application
 - Class Library
 
-The Empty Application, Web Application, Web API Application are based on the new templates recently introduced with Visual Studio CTP 6 release, and you can read about this new templates on blog post accompanying CTP 6 release:  
+The Empty Application, Web Application, Web Application Simple (a.k.a. Web Application No Auth), Web API Application are based on the new templates recently introduced with Visual Studio CTP 6 release, and you can read about this new templates on blog post accompanying CTP 6 release:
 [ASP.NET 5 Updates and other improvements for Web Developers in Visual Studio 2015 CTP 6](http://blogs.msdn.com/b/webdev/archive/2015/02/23/aspnet-5-updates-for-feb-2015.aspx)
 
-The Nancy project is based on framework's "Hello World" template:  
+The Nancy project is based on framework's "Hello World" template:
 [Nancy Getting Started: Introduction](https://github.com/NancyFx/Nancy/wiki/Introduction)
 
+## Related yeoman generators
 
-## Generators
+The goal of ```generator-aspnet``` is to provide an experience consistent with creating new ASP.NET 5 (_DNX_) projects
+and files in Visual Studio 2015. Below are some other related generators that you may be interested in.
 
-Available generators:
+### ```generator-csharp```
+
+[```generator-csharp```](https://github.com/OmniSharp/generator-csharp) is a work in progress but is available for you to try out today. The goal of [```generator-csharp```](https://github.com/OmniSharp/generator-csharp) is to provide an experience consistent with creating C# projects (_MSBuild based, not DNX_) and files in Visual Studio 2015.
+
+### ```generator-aspnet-xtianus```
+
+[```generator-aspnet-xtianus```](https://github.com/xtianus79/generator-aspnet) is an extension of OmniSharp/generator-aspnet that comes with a special Foundation 5 SASS/SCSS framework ready out of the box with wiredep & other grunt tasks for advanced front-end development. Look for => [```Starter Web Application - Foundation 5```](https://github.com/xtianus79/generator-aspnet/blob/master/templates/projects/foundation5/README.md). The other goal of this generator is to provide alternative templates to the traditional ASP.NET Visual Studio templates. More templates will become housed under this fork in the near future.  Feel free to participate and learn more about [```generator-aspnet-xtianus```](https://github.com/xtianus79/generator-aspnet).
+
+If you are working on a related generator please [open an issue](https://github.com/OmniSharp/generator-aspnet/issues/new) to let us know about it so that we can add it to the list.
+
+## Sub Generators
+
+Available sub generators (_to create files after the project has been created_):
 
 * [aspnet:MvcController](#mvccontroller)
 * [aspnet:MvcView](#mvcview)
 * [aspnet:WebApiContoller](#webapicontroller)
+* [aspnet:AngularModule](#angularmodule)
+* [aspnet:AngularController](#angularcontroller)
+* [aspnet:AngularControllerAs](#angularcontrolleras)
+* [aspnet:AngularDirective](#angulardirective)
+* [aspnet:AngularFactory](#angularfactory)
 * [aspnet:Class](#class)
-* [aspnet:StartupClass](#startupclass) 
+* [aspnet:Interface](#interface)
+* [aspnet:StartupClass](#startupclass)
 * [aspnet:BowerJson](#bowerjson)
 * [aspnet:CoffeeScript](#coffeescript)
 * [aspnet:Config](#config)
 * [aspnet:Gulpfile](#gulpfile)
+* [aspnet:Gruntfile](#gruntfile)
+* [aspnet:gitignore](#gitignore)
 * [aspnet:HTMLPage](#htmlpage)
 * [aspnet:JavaScript](#javascript)
 * [aspnet:JScript](#jscript)
 * [aspnet:JSON](#json)
+* [aspnet:JSONSchema](#jsonschema)
+* [aspnet:JSX](#jsx)
+* [aspnet:Middleware](#middleware)
 * [aspnet:PackageJson](#packagejson)
+* [aspnet:StyleSheet](#stylesheet)
+* [aspnet:StyleSheetScss](#stylesheetscss)
+* [aspnet:StyleSheetLess](#stylesheetless)
+* [aspnet:TagHelper](#taghelper)
 * [aspnet:TextFile](#textfile)
 * [aspnet:TypeScript](#typescript)
+* [aspnet:TypeScriptConfig](#typescriptconfig)
 
 ** Note: files generated are created in the working directory, no conventions are forced **
 
 ### MvcController
 
-Creates a new ASP.NET 5 MvcController class 
+Creates a new ASP.NET 5 MvcController class
 
 Example:
 
@@ -74,7 +108,7 @@ yo aspnet:MvcController ContactController
 
 Produces `/ContactController.cs`
 
-```
+```cs
 using Microsoft.AspNet.Mvc;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -94,7 +128,7 @@ namespace MyNamespace
 
 ### MvcView
 
-Creates a new ASP.NET 5 MvcView page file 
+Creates a new ASP.NET 5 MvcView page file
 
 Example:
 
@@ -115,7 +149,7 @@ Produces `/ContactView.cshtml`
 ```
 ### WebApiController
 
-Creates a new ASP.NET 5 WebApiController class 
+Creates a new ASP.NET 5 WebApiController class
 
 Example:
 
@@ -125,7 +159,7 @@ yo aspnet:WebApiController ValuesController
 
 Produces `/ValuesController.cs`
 
-```
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,12 +205,67 @@ namespace MyNamespace.Controllers
         }
     }
 }
-
 ```
+
+### AngularModule
+
+Creates AngularJS module file
+
+Example:
+```
+yo aspnet:AngularModule filename
+```
+
+Produces `filename.js`
+
+### AngularController
+
+Creates AngularJS controller file using $scope
+
+Example:
+```
+yo aspnet:AngularController filename
+```
+
+Produces `filename.js`
+
+
+### AngularControllerAs
+
+Creates AngularJS controller file using `Controller As` syntax.
+
+Example:
+```
+yo aspnet:AngularControllerAs filename
+```
+
+Produces `filename.js`
+
+### AngularDirective
+
+Creates AngularJS directive file.
+
+Example:
+```
+yo aspnet:AngularDirective filename
+```
+
+Produces `filename.js`
+
+### AngularFactory
+
+Creates AngularJS factory file.
+
+Example:
+```
+yo aspnet:AngularFactory filename
+```
+
+Produces `filename.js`
 
 ### Class
 
-Creates a new ASP.NET 5 Class 
+Creates a new ASP.NET 5 Class
 
 Example:
 
@@ -186,7 +275,7 @@ yo aspnet:Class Contact
 
 Produces `/Contact.cs`
 
-```
+```cs
 using System;
 
 namespace MyNamespace
@@ -197,6 +286,18 @@ namespace MyNamespace
     }
 }
 ```
+
+### Interface
+
+Creates a new ASP.NET 5 Interface
+
+Example:
+
+```
+yo aspnet:Interface IContact
+```
+
+Produces `/IContact.cs`
 
 ### StartupClass
 
@@ -212,7 +313,7 @@ Produces `Startup.cs`
 
 ### BowerJson
 
-Creates a new Bower file
+Creates a new `bower.json` and configuration file.
 
 Example:
 
@@ -220,7 +321,7 @@ Example:
 yo aspnet:BowerJson
 ```
 
-Produces `bower.json`
+Produces `bower.json` and `.bowerrc`
 
 ### CoffeeScript
 
@@ -257,6 +358,31 @@ yo aspnet:Gulpfile
 ```
 
 Produces `gulpfile.js`
+
+### Gruntfile
+
+Creates a new `Grunt` file
+
+Example:
+
+```
+yo aspnet:Gruntfile
+```
+
+Produces `Gruntfile.js`
+
+
+### gitignore
+
+Creates a new .gitignore file
+
+Example:
+
+```
+yo aspnet:gitignore
+```
+
+Produces `.gitignore`
 
 ### HTMLPage
 
@@ -306,6 +432,42 @@ yo aspnet:JSON filename
 
 Produces `filename.json`
 
+### JSONSchema
+
+Creates a new JSON schema file
+
+Example:
+
+```
+yo aspnet:JSONSchema filename
+```
+
+Produces `filename.json`
+
+### JSX
+
+Creates a new React JSX file
+
+Example:
+
+```
+yo aspnet:JSX filename
+```
+
+Produces `filename.jsx`
+
+### Middleware
+
+Creates a new C# Middleware class file
+
+Example:
+
+```
+yo aspnet:Middleware filename
+```
+
+Produces `filename.cs`
+
 ### PackageJson
 
 Creates a new package.json file
@@ -317,6 +479,54 @@ yo aspnet:PackageJson
 ```
 
 Produces `package.json`
+
+### StyleSheet
+
+Creates a new CSS file
+
+Example:
+
+```
+yo aspnet:StyleSheet style
+```
+
+Produces `style.css`
+
+### StyleSheetLess
+
+Creates a new Less class file
+
+Example:
+
+```
+yo aspnet:StyleSheetLess filename
+```
+
+Produces `filename.less`
+
+### StyleSheetSCSS
+
+Creates a new Sass SCSS class file
+
+Example:
+
+```
+yo aspnet:StyleSheetSCSS filename
+```
+
+Produces `filename.scss`
+
+### TagHelper
+
+Creates a new TagHelper class file
+
+Example:
+
+```
+yo aspnet:TagHelper filename
+```
+
+Produces `filename.cs`
 
 ### TextFile
 
@@ -342,6 +552,17 @@ yo aspnet:TypeScript filename
 
 Produces `filename.ts`
 
+### TypeScriptConfig
+
+Creates a new TypeScript configuration file
+
+Example:
+
+```
+yo aspnet:TypeScriptConfig
+```
+
+Produces `tsconfig.json`
 
 
 ## License
