@@ -8,11 +8,12 @@ var NamedGenerator = module.exports = function NamedGenerator() {
 
 util.inherits(NamedGenerator, ScriptBase);
 
-NamedGenerator.prototype.createNamedItem = function(){
-	this.generateTemplateFile(
-		'class.dyl',
-		this.name + '.dyl',
-		{ namespace: 'MyNamespace', classname: this.name }	
-	);
+NamedGenerator.prototype.createNamedItem = function() {
+  this.generateTemplateFile(
+    'WebApiController.dyl',
+    this.name + '.dyl', {
+      namespace: 'MyNamespace',
+      classname: this.name
+    }
+  );
 };
-

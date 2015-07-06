@@ -1,0 +1,8 @@
+Description:
+	Creates a new dylan.NET Middleware class file
+
+Example:
+	yo aspnet:MiddlewareDyl filename
+
+	This will create:
+		filename.dyl

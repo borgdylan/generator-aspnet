@@ -1,0 +1,8 @@
+Description:
+	Creates a new Startup Class file
+
+Example:
+	yo aspnet:StartupClassDyl
+
+	This will create:
+		Startup.dyl

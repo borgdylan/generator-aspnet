@@ -1,0 +1,8 @@
+Description:
+	Creates a new dylan.NET Interface file
+
+Example:
+	yo aspnet:InterfaceDyl filename
+
+	This will create:
+		filename.dyl
